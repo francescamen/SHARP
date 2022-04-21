@@ -53,7 +53,7 @@ The following script computes the Doppler spectrum as described in Section 3.2 o
 ```bash
 python CSI_doppler_computation.py <'directory of the reconstructed data'> <'sub-directories of data'> <'directory to save the Doppler data'> <'starting index to process data'> <'end index to process data (samples from the end)'> <'number of packets in a sample'> <'number of packets for sliding operations'> <'noise level'> <--bandwidth 'bandwidth'>
 ```
-e.g., python CSI_doppler_computation.py ./processed_phase/ S1a ./doppler_traces/ 800 800 31 1 -1.5
+e.g., python CSI_doppler_computation.py ./processed_phase/ S1a ./doppler_traces/ 800 800 31 1 -1.2
 
 ### Dataset creation
 - Create the datasets for training and validation
