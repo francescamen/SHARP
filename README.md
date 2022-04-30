@@ -6,7 +6,7 @@ This repository contains the reference code for the article [''SHARP: Environmen
 If you find the project useful and you use this code, please cite our article:
 ```
 @article{meneghello2022sharp,
-  author = {Meneghello, Francesca and Garlisi, Domenico and Fabbro, Nicolò Dal and Tinnirello, Ilenia and Rossi, Michele},
+  author = {Meneghello, Francesca and Garlisi, Domenico and Dal Fabbro, Nicolò and Tinnirello, Ilenia and Rossi, Michele},
   title = {{SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points}},
   year = {2022}
 }
@@ -60,13 +60,13 @@ e.g., python CSI_doppler_computation.py ./processed_phase/ S1a ./doppler_traces/
 ```bash
 python CSI_doppler_create_dataset_train.py <'directory of the Doppler data'> <'sub-directories, comma-separated'> <'number of packets in a sample'> <'number of packets for sliding operations'> <'number of samples per window'> <'number of samples for window sliding'> <'labels of the activities to be considered'> <'number of streams * number of antennas'>
 ```
-e.g., python CSI_doppler_create_dataset_train.py ./doppler_traces/ S1a 100 1 340 30 E,L,W,R,J,C 4
+  e.g., python CSI_doppler_create_dataset_train.py ./doppler_traces/ S1a 100 1 340 30 E,L,W,R,J,C 4
 
 - Create the datasets for test
 ```bash
 python CSI_doppler_create_dataset_test.py <'directory of the Doppler data'> <'sub-directories, comma-separated'> <'number of packets in a sample'> <'number of packets for sliding operations'> <'number of samples per window'> <'number of samples for window sliding'> <'labels of the activities to be considered'> <'number of streams * number of antennas'>
 ```
-e.g., python CSI_doppler_create_dataset_test.py ./doppler_traces/ S7a 100 1 340 30 E,L,W,R,J,C 4
+  e.g., python CSI_doppler_create_dataset_test.py ./doppler_traces/ S7a 100 1 340 30 E,L,W,R,J,C 4
 
 ### Train the learning algorithm for HAR
 ```bash
@@ -79,19 +79,19 @@ e.g., python CSI_network.py ./doppler_traces/ S1a 100 340 1 32 4 network E,L,W,R
 ```bash
 python CSI_network_test.py <'directory of the datasets'> <'sub-directories, comma-separated'> <'length along the feature dimension (height)'> <'length along the time dimension (width)'> <'number of channels'> <'number of samples in a batch'> <'name prefix for the files'> <'activities to be considered, comma-separated'> <--bandwidth 'bandwidth'> <--sub-band 'index of the sub-band to consider (for 20 MHz and 40 MHz)'> 
 ```
-e.g., python CSI_network_test.py ./doppler_traces/ S7a 100 340 1 32 4 network E,L,W,R,J,C
+  e.g., python CSI_network_test.py ./doppler_traces/ S7a 100 340 1 32 4 network E,L,W,R,J,C
 
 - Compute the performance metrics using the output file of the test
 ```bash
 python CSI_network_metrics.py <'name of the output file containing the metrics'> <'activities to be considered, comma-separated'>
 ```
-e.g., python CSI_network_metrics.py complete_different_E,L,W,R,J,C_S7a_band_80_subband_1 E,L,W,R,J,C 
+  e.g., python CSI_network_metrics.py complete_different_E,L,W,R,J,C_S7a_band_80_subband_1 E,L,W,R,J,C 
 
 - Plot the performance metrics
 ```bash
 python CSI_network_metrics_plots.py <'sub-directories, comma-separated'>
 ```
-e.g., python CSI_network_metrics_plots.py complete_different_E,L,W,R,J,C_S7a_band_80_subband_1 E,L,W,R,J,C
+  e.g., python CSI_network_metrics_plots.py complete_different_E,L,W,R,J,C_S7a_band_80_subband_1 E,L,W,R,J,C
 
 ### Parameters
 The results on the article are obtained with the parameters reported in the examples.
