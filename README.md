@@ -94,7 +94,15 @@ python CSI_network_metrics_plots.py <'sub-directories, comma-separated'>
   e.g., python CSI_network_metrics_plots.py complete_different_E,L,W,R,J,C_S7a_band_80_subband_1 E,L,W,R,J,C
 
 ### Parameters
-The results on the article are obtained with the parameters reported in the examples.
+The results of the article are obtained with the parameters reported in the examples. For convenience, the repository also contains two pre-trained networks, i.e., ``single_ant_network.h5`` and ``single_ant_smart_home_network.h5`` respectively for 5-classes and 8-classes classification problems.
+
+### Python and relevant libraries version
+Python >= 3.7.7  
+TensorFlow >= 2.6.0  
+Numpy >= 1.19.5  
+Scipy = 1.4.1  
+Scikit-learn = 0.23.2  
+OSQP >= 0.6.1
 
 ## Contact
 Francesca Meneghello
