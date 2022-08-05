@@ -1,15 +1,19 @@
 # SHARP
 Algorithms for human activity recognition with a commercial IEEE 802.11ac router @ 5 GHz, 80 MHz of bandwidth.
 
-This repository contains the reference code for the article [''SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points''](https://arxiv.org/abs/2103.09924).
+This repository contains the reference code for the article [''SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points''](https://ieeexplore.ieee.org/document/9804861).
 
 If you find the project useful and you use this code, please cite our article:
 ```
 @article{meneghello2022sharp,
-  author = {Meneghello, Francesca and Garlisi, Domenico and Dal Fabbro, Nicolò and Tinnirello, Ilenia and Rossi, Michele},
-  title = {{SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points}},
-  year = {2022}
-}
+  author={Meneghello, Francesca and Garlisi, Domenico and Dal Fabbro, Nicol\o' and Tinnirello, Ilenia and Rossi, Michele},
+  journal={IEEE Transactions on Mobile Computing}, 
+  title={{SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points}}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-16}
+  }
 ```
 
 ## How to use
