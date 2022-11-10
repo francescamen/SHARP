@@ -64,7 +64,7 @@ e.g., python CSI_doppler_computation.py ./processed_phase/ S1a ./doppler_traces/
 ```bash
 python CSI_doppler_create_dataset_train.py <'directory of the Doppler data'> <'sub-directories, comma-separated'> <'number of packets in a sample'> <'number of packets for sliding operations'> <'number of samples per window'> <'number of samples for window sliding'> <'labels of the activities to be considered'> <'number of streams * number of antennas'>
 ```
-  e.g., python CSI_doppler_create_dataset_train.py ./doppler_traces/ S1a 100 1 340 30 E,L,W,R,J,C 4
+  e.g., python CSI_doppler_create_dataset_train.py ./doppler_traces/ S1a 31 1 340 30 E,L,W,R,J,C 4
 
 - Create the datasets for test
 ```bash
