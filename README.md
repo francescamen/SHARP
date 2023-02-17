@@ -20,7 +20,7 @@ If you find the project useful and you use this code, please cite our article:
 Clone the repository and enter the folder with the python code:
 ```bash
 cd <your_path>
-git clone https://github.com/signetlabdei/SHARP
+git clone https://github.com/francescamen/SHARP
 ```
 
 Download the input data from http://researchdata.cab.unipd.it/id/eprint/624 and unzip the file.
