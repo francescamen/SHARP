@@ -26,7 +26,7 @@ git clone https://github.com/francescamen/SHARP
 Download the input data from http://researchdata.cab.unipd.it/id/eprint/624 and unzip the file.
 For your convenience, you can use the ```input_files``` inside this project folder to place the files but the scripts work whatever is the source folder.
 
-The dataset contains the Wi-Fi channel frequency response (CFR) data collected in an IEEE 802.11ac network through [NEXMON CSI](https://github.com/seemoo-lab/nexmon_csi). 
+The dataset contains Wi-Fi channel frequency response (CFR) data collected in an IEEE 802.11ac network through [NEXMON CSI](https://github.com/seemoo-lab/nexmon_csi). 
 The information is collected by a monitor node (ASUS RT-AC86U router) while two terminals are exchanging traffic in channel 42 (5.21 GHz for the center frequency and 80 MHz of bandwidth) and a person acts as an obstacle for the transmission by performing different activities. 
 The considered movements are the following: walking (W) or running (R) around, jumping (J) in place, sitting (L) or standing (S) somewhere in the room, sitting down and standing up (C) continuously, and doing arm gym (H).
 The CFR data for the empty room (E) is also provided. We obtained data from three volunteers, a male, and two females.
