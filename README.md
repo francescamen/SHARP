@@ -66,7 +66,7 @@ python CSI_doppler_plots_antennas.py <'directory of the reconstructed data'> <'s
 e.g., python ./doppler_traces/ S7a 100 1 E,L1,W,R,J1 20000
 
 #### Pre-computed Doppler traces
-If you want to skip the above processing steps, you can find the Doppler traces [in this Google Drive folder](https://drive.google.com/drive/folders/1SilO6VD73Lz8sjZ-KQgFnQ2IKRvggqPg?usp=sharing). In the same folder, the sanitized channel measurements for S2a and S7a are uploaded as examples in ```processed_phase```.  
+If you want to skip the above processing steps, you can find the Doppler traces [in this Google Drive folder](https://drive.google.com/drive/folders/1SilO6VD73Lz8sjZ-KQgFnQ2IKRvggqPg?usp=sharing). In the same folder, the sanitized channel measurements for S2a and S7a are uploaded as examples in ```processed_phase```. Exaples of plots of the Doppler traces are also included.
 
 ### Dataset creation
 - Create the datasets for training and validation
