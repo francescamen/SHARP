@@ -63,7 +63,7 @@ To plot the Doppler traces use
 ```bash
 python CSI_doppler_plots_antennas.py <'directory of the reconstructed data'> <'sub-directory of data'> <'length along the feature dimension (height)'> <'sliding length'> <'labels of the activities to be considered'> <'last index to plot'>
 ```
-e.g., python ./doppler_traces/ S7a 100 1 E,L1,W,R,J1 20000
+e.g., python CSI_doppler_plots_antennas.py ./doppler_traces/ S7a 100 1 E,L1,W,R,J1 20000
 
 #### Pre-computed Doppler traces
 If you want to skip the above processing steps, you can find the Doppler traces [in this Google Drive folder](https://drive.google.com/drive/folders/1SilO6VD73Lz8sjZ-KQgFnQ2IKRvggqPg?usp=sharing). In the same folder, the sanitized channel measurements for S2a and S7a are uploaded as examples in ```processed_phase```. Exaples of plots of the Doppler traces are also included.
@@ -102,9 +102,9 @@ python CSI_network_metrics.py <'name of the output file containing the metrics'>
 
 - Plot the performance metrics
 ```bash
-python CSI_network_metrics_plots.py <'sub-directories, comma-separated'>
+python CSI_network_metrics_plot.py <'sub-directories, comma-separated'>
 ```
-  e.g., python CSI_network_metrics_plots.py complete_different_E,L,W,R,J_S7a_band_80_subband_1 E,L,W,R,J
+  e.g., python CSI_network_metrics_plot.py complete_different_E,L,W,R,J_S7a_band_80_subband_1 E,L,W,R,J
 
 Some examples of confusion matrices can be found [in this Google Drive folder](https://drive.google.com/drive/folders/1SilO6VD73Lz8sjZ-KQgFnQ2IKRvggqPg?usp=sharing).
 
