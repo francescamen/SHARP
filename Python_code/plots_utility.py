@@ -604,3 +604,161 @@ def plt_phase(phase_raw, phase_proc, name_plot):
         axi.label_outer()
     plt.savefig(name_plot, bbox_inches='tight')
     plt.close()
+
+
+def plt_fft_doppler_activities(doppler_spectrum_list, antenna, csi_label_dict, sliding_lenght, delta_v, name_plot):
+    fig = plt.figure(constrained_layout=True)
+    fig.set_size_inches(15, 3)
+    widths = [1, 1, 1, 1, 1, 0.5]
+    heights = [1]
+    gs = fig.add_gridspec(ncols=6, nrows=1, width_ratios=widths, height_ratios=heights)
+    step = 20
+    step_x = 5
+    ax = []
+    for a_i in range(5):
+        act = doppler_spectrum_list[a_i][antenna]
+        length_v = mt.floor(act.shape[1] / 2)
+        factor_v = step * (mt.floor(length_v / step))
+        ticks_y = np.arange(length_v - factor_v, length_v + factor_v + 1, step)
+        ticks_x = np.arange(0, act.shape[0] + 1, int(act.shape[0]/step_x))
+
+        ax1 = fig.add_subplot(gs[(0, a_i)])
+        plt1 = ax1.pcolormesh(act.T, cmap='viridis', linewidth=0, rasterized=True)  # , shading='gouraud')
+        plt1.set_edgecolor('face')
+        ax1.set_ylabel(r'$v_p \cos \alpha_p$ [m/s]')
+        ax1.set_xlabel(r'time [s]')
+        ax1.set_yticks(ticks_y + 0.5)
+        ax1.set_yticklabels(np.round((ticks_y - length_v) * delta_v, 2))
+        ax1.set_xticks(ticks_x)
+        ax1.set_xticklabels(np.round(ticks_x * sliding_lenght * 6e-3, 2))
+
+        title_p = csi_label_dict[a_i]
+        ax1.set_title(title_p)
+        ax.append(ax1)
+
+        if a_i == 4:
+            cbar_ax = fig.add_axes([0.92, 0.2, 0.01, 0.7])
+            cbar1 = fig.colorbar(plt1,  cax=cbar_ax, ticks=[-12, -8, -4, 0])
+            cbar1.ax.set_ylabel('normalized power [dB]')
+
+    for axi in ax:
+        axi.label_outer()
+    plt.savefig(name_plot, bbox_inches='tight')
+    plt.close()
+
+
+def plt_fft_doppler_activities_compact(doppler_spectrum_list, antenna, csi_label_dict, sliding_lenght, delta_v, name_plot):
+    fig = plt.figure(constrained_layout=True)
+    fig.set_size_inches(8, 5.5)
+    widths = [1, 1, 1, 1, 1, 1, 0.5]
+    heights = [1, 1]
+    gs = fig.add_gridspec(ncols=7, nrows=2, width_ratios=widths, height_ratios=heights)
+    step = 20
+    step_x = 5
+    ax = []
+    list_plts_pos_row = [0, 0, 1, 1, 1]
+    list_plts_pos_col_start = [1, 3, 0, 2, 4]
+    list_plts_pos_col_end = [3, 5, 2, 4, 6]
+    for a_i in range(5):
+        act = doppler_spectrum_list[a_i][antenna]
+        length_v = mt.floor(act.shape[1] / 2)
+        factor_v = step * (mt.floor(length_v / step))
+        ticks_y = np.arange(length_v - factor_v, length_v + factor_v + 1, step)
+        ticks_x = np.arange(0, act.shape[0] + 1, int(act.shape[0]/step_x))
+
+        ax1 = fig.add_subplot(gs[list_plts_pos_row[a_i], list_plts_pos_col_start[a_i]:list_plts_pos_col_end[a_i]])
+        plt1 = ax1.pcolormesh(act.T, cmap='viridis', linewidth=0, rasterized=True)  # , shading='gouraud')
+        plt1.set_edgecolor('face')
+        ax1.set_xlabel(r'time [s]')
+        ax1.set_yticks(ticks_y + 0.5)
+        if a_i == 0 or a_i == 2:
+            ax1.set_yticklabels(np.round((ticks_y - length_v) * delta_v, 2))
+            ax1.set_ylabel(r'$v_p \cos \alpha_p$ [m/s]')
+        else:
+            ax1.set_yticklabels([])
+            ax1.set_ylabel('')
+        ax1.set_xticks(ticks_x)
+        ax1.set_xticklabels(np.round(ticks_x * sliding_lenght * 6e-3, 2))
+
+        title_p = csi_label_dict[a_i]
+        ax1.set_title(title_p)
+        ax.append(ax1)
+
+        if a_i == 1 or a_i == 4:
+            cbar_ax = fig.add_axes([0.98, 0.2, 0.02, 0.7])
+            cbar1 = fig.colorbar(plt1,  cax=cbar_ax, ticks=[-12, -8, -4, 0])
+            cbar1.ax.set_ylabel('normalized power [dB]')
+
+    plt.savefig(name_plot, bbox_inches='tight')
+    plt.close()
+
+
+def plt_fft_doppler_activities_compact_2(doppler_spectrum_list, antenna, csi_label_dict, sliding_lenght,
+                                         delta_v, name_plot):
+    fig = plt.figure(constrained_layout=True)
+    fig.set_size_inches(6, 5.5)
+    widths = [1, 1, 0.5]
+    heights = [1, 1]
+    gs = fig.add_gridspec(ncols=3, nrows=2, width_ratios=widths, height_ratios=heights)
+    step = 20
+    step_x = 5
+    ax = []
+    list_plts_pos_row = [0, 0, 1, 1]
+    list_plts_pos_col = [0, 1, 0, 1]
+    for a_i in range(4):
+        act = doppler_spectrum_list[a_i][antenna]
+        length_v = mt.floor(act.shape[1] / 2)
+        factor_v = step * (mt.floor(length_v / step))
+        ticks_y = np.arange(length_v - factor_v, length_v + factor_v + 1, step)
+        ticks_x = np.arange(0, act.shape[0] + 1, int(act.shape[0]/step_x))
+
+        ax1 = fig.add_subplot(gs[list_plts_pos_row[a_i], list_plts_pos_col[a_i]])
+        plt1 = ax1.pcolormesh(act.T, cmap='viridis', linewidth=0, rasterized=True)  # , shading='gouraud')
+        plt1.set_edgecolor('face')
+        ax1.set_xlabel(r'time [s]')
+        ax1.set_yticks(ticks_y + 0.5)
+        if a_i == 0 or a_i == 2:
+            ax1.set_yticklabels(np.round((ticks_y - length_v) * delta_v, 2))
+            ax1.set_ylabel(r'$v_p \cos \alpha_p$ [m/s]')
+        else:
+            ax1.set_yticklabels([])
+            ax1.set_ylabel('')
+        ax1.set_xticks(ticks_x)
+        ax1.set_xticklabels(np.round(ticks_x * sliding_lenght * 6e-3, 2))
+
+        title_p = csi_label_dict[a_i]
+        ax1.set_title(title_p)
+        ax.append(ax1)
+
+        if a_i == 1:
+            cbar_ax = fig.add_axes([0.9, 0.2, 0.03, 0.7])
+            cbar1 = fig.colorbar(plt1,  cax=cbar_ax, ticks=[-12, -8, -4, 0])
+            cbar1.ax.set_ylabel('normalized power [dB]')
+
+    plt.savefig(name_plot, bbox_inches='tight')
+    plt.close()
+
+
+def plt_fft_doppler_activity_single(input_a, antenna, sliding_lenght, delta_v, name_plot):
+    fig = plt.figure(constrained_layout=True)
+    fig.set_size_inches(3, 3)
+    step = 20
+    step_x = 5
+    act = input_a[antenna][:340, :]
+    length_v = mt.floor(act.shape[1] / 2)
+    factor_v = step * (mt.floor(length_v / step))
+    ticks_y = np.arange(length_v - factor_v, length_v + factor_v + 1, step)
+    ticks_x = np.arange(0, act.shape[0] + 1, int(act.shape[0]/step_x))
+
+    ax1 = fig.add_subplot()
+    plt1 = ax1.pcolormesh(act.T, cmap='viridis', linewidth=0, rasterized=True)  # , shading='gouraud')
+    plt1.set_edgecolor('face')
+    ax1.set_ylabel(r'$v_p \cos \alpha_p$ [m/s]')
+    ax1.set_xlabel(r'time [s]')
+    ax1.set_yticks(ticks_y + 0.5)
+    ax1.set_yticklabels(np.round((ticks_y - length_v) * delta_v, 2))
+    ax1.set_xticks(ticks_x)
+    ax1.set_xticklabels(np.round(ticks_x * sliding_lenght * 6e-3, 1))
+
+    plt.savefig(name_plot, bbox_inches='tight')
+    plt.close()

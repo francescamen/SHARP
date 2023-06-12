@@ -59,11 +59,16 @@ python CSI_doppler_computation.py <'directory of the reconstructed data'> <'sub-
 ```
 e.g., python CSI_doppler_computation.py ./processed_phase/ S1a,S1b,S1c,S2a,S2b,S3a,S4a,S4b,S5a,S6a,S6b,S7a ./doppler_traces/ 800 800 31 1 -1.2
 
-To plot the Doppler traces use 
+To plot the Doppler traces use (first to plot all the antennas, second single antenna for all the activities) 
 ```bash
 python CSI_doppler_plots_antennas.py <'directory of the reconstructed data'> <'sub-directory of data'> <'length along the feature dimension (height)'> <'sliding length'> <'labels of the activities to be considered'> <'last index to plot'>
 ```
 e.g., python CSI_doppler_plots_antennas.py ./doppler_traces/ S7a 100 1 E,L1,W,R,J1 20000
+
+```bash
+python CSI_doppler_plots_activities.py <'directory of the reconstructed data'> <'sub-directory of data'> <'length along the feature dimension (height)'> <'sliding length'> <'labels of the activities to be considered'> <'first index to plot'> <'last index to plot'>
+```
+e.g., python CSI_doppler_plots_activities.py ./doppler_traces/ S7a 100 1 E,L1,W,R,J1 570 1070
 
 #### Pre-computed Doppler traces
 If you want to skip the above processing steps, you can find the Doppler traces [in this Google Drive folder](https://drive.google.com/drive/folders/1SilO6VD73Lz8sjZ-KQgFnQ2IKRvggqPg?usp=sharing). In the same folder, the sanitized channel measurements for S2a and S7a are uploaded as examples in ```processed_phase```. Exaples of plots of the Doppler traces are also included.
