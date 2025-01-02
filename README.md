@@ -9,10 +9,10 @@ If you find the project useful and you use this code, please cite our article:
   author={Meneghello, Francesca and Garlisi, Domenico and Dal Fabbro, Nicol\o' and Tinnirello, Ilenia and Rossi, Michele},
   journal={IEEE Transactions on Mobile Computing}, 
   title={{SHARP: Environment and Person Independent Activity Recognition with Commodity IEEE 802.11 Access Points}}, 
-  year={2022},
-  volume={},
-  number={},
-  pages={1-16}
+  year={2023},
+  volume={22},
+  number={10},
+  pages={6160-6175}
   }
 ```
 
