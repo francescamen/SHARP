@@ -24,7 +24,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 rcParams['font.family'] = 'serif'
 rcParams['font.serif'] = 'Times'
 rcParams['text.usetex'] = 'true'
-rcParams['text.latex.preamble'] = [r'\usepackage{newtxmath}']
+rcParams['text.latex.preamble'] = r'\usepackage{newtxmath}'
 rcParams['font.size'] = 16
 
 
