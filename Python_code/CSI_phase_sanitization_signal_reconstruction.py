@@ -19,7 +19,6 @@ import numpy as np
 import scipy.io as sio
 from os import listdir, path
 import pickle
-import math as mt
 import os
 
 
@@ -45,7 +44,7 @@ if __name__ == '__main__':
     for name in names:
         name_f = name[10:] + '.mat'
         stop = False
-        sub_dir_name = name_f[0:3]
+        sub_dir_name = name_f.split('_')[0]  # e.g., AR1a_E_stream_0.mat -> AR1a
         subdir_path = save_dir + sub_dir_name
 
         complete_path = subdir_path + '/' + name_f
@@ -75,36 +74,12 @@ if __name__ == '__main__':
         csi_matrix_processed[:, 6:-5, 0] = np.abs(H_est[6:-5, :]).T
 
         # PHASE
+        # Note: a previous version also corrected, for each packet, the 2pi jumps across sub-channels of the phase
+        # difference with the previous packet before the linear fit below. That step made the activity recognition
+        # generalize much worse to unseen days, people, and environments (AR dataset, Oct. 2026), so it was removed.
         phase_before = np.unwrap(np.angle(H_est[6:-5, :]), axis=0)
-        phase_err_tot = np.diff(phase_before, axis=1)
         ones_vector = np.ones((2, phase_before.shape[0]))
         ones_vector[1, :] = np.arange(0, phase_before.shape[0])
-        for tidx in range(1, phase_before.shape[1]):
-            stop = False
-            idx_prec = -1
-            while not stop:
-                phase_err = phase_before[:, tidx] - phase_before[:, tidx - 1]
-                diff_phase_err = np.diff(phase_err)
-                idxs_invert_up = np.argwhere(diff_phase_err > 0.9 * mt.pi)[:, 0]
-                idxs_invert_down = np.argwhere(diff_phase_err < -0.9 * mt.pi)[:, 0]
-                if idxs_invert_up.shape[0] > 0:
-                    idx_act = idxs_invert_up[0]
-                    if idx_act == idx_prec:  # to avoid a continuous jump
-                        stop = True
-                    else:
-                        phase_before[idx_act + 1:, tidx] = phase_before[idx_act + 1:, tidx] \
-                                                           - 2 * mt.pi
-                        idx_prec = idx_act
-                elif idxs_invert_down.shape[0] > 0:
-                    idx_act = idxs_invert_down[0]
-                    if idx_act == idx_prec:
-                        stop = True
-                    else:
-                        phase_before[idx_act + 1:, tidx] = phase_before[idx_act + 1:, tidx] \
-                                                           + 2 * mt.pi
-                        idx_prec = idx_act
-                else:
-                    stop = True
         for tidx in range(1, H_est.shape[1] - 1):
             val_prec = phase_before[:, tidx - 1:tidx]
             val_act = phase_before[:, tidx:tidx + 1]
